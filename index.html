@@ -1,3 +1,13 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AR動画切り替え</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/jeromeetienne/AR.js@1.7.2/aframe/build/aframe-ar.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
 <body>
 
     <div id="loadingCircle">ローディング中...</div>
@@ -7,7 +17,7 @@
         <button id="closeButton">✖︎</button> <!-- 閉じるボタン -->
     </div>
 
-    <div id="tapHint">タップで映像を切り替える</div>
+    <div id="tapHint">①・②で映像を切り替える</div>
 
     <div id="markerStatus">マーカーが見つかりません</div>
 
@@ -43,8 +53,10 @@
         <a-marker id="ocean2" type="pattern" url="markers/ocean2.patt"></a-marker>
         <a-marker id="ocean3" type="pattern" url="markers/ocean3.patt"></a-marker>
         <a-marker id="ocean4" type="pattern" url="markers/ocean4.patt"></a-marker>
-        
+
         <a-entity camera></a-entity>
     </a-scene>
 
+    <script src="script.js"></script>
 </body>
+</html>

@@ -1,4 +1,3 @@
-
 const loadingCircle = document.getElementById('loadingCircle');
 const gifPopup = document.getElementById('gifPopup');
 const popupGif = document.getElementById('popupGif');
@@ -29,6 +28,7 @@ const gifPaths = {
 
 let isPlaying = false;
 let currentGifIndex = 0;
+let currentGifArray = [];
 
 function updateMarkerStatus(show, isMarkerFound = false) {
     if (isPlaying) return;
@@ -91,6 +91,17 @@ function showPopupGif(gifPathsArray) {
     });
 }
 
+// ①ボタン（tbバージョン）と②ボタン（tバージョン）で切り替え
+document.getElementById('button1').addEventListener('click', () => {
+    currentGifArray = gifPaths[currentMarkerId][0];
+    showPopupGif(currentGifArray);
+});
+
+document.getElementById('button2').addEventListener('click', () => {
+    currentGifArray = gifPaths[currentMarkerId][1];
+    showPopupGif(currentGifArray);
+});
+
 // マーカー検出処理
 document.querySelectorAll('a-marker').forEach(marker => {
     marker.addEventListener('markerFound', () => {
@@ -98,9 +109,10 @@ document.querySelectorAll('a-marker').forEach(marker => {
         updateMarkerStatus(true, true);
 
         const markerId = marker.id;
+        currentMarkerId = markerId;  // 現在のマーカーIDを保存
         if (gifPaths[markerId]) {
             setTimeout(() => {
-                showPopupGif(gifPaths[markerId]);
+                showPopupGif(gifPaths[markerId][0]);  // 最初はtbバージョン
             }, 1000);
         }
     });

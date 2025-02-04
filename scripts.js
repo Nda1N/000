@@ -29,23 +29,7 @@ const gifPaths = {
 let isPlaying = false;
 let currentGifIndex = 0;
 let currentGifArray = [];
-
-function updateMarkerStatus(show, isMarkerFound = false) {
-    if (isPlaying) return;
-
-    if (show) {
-        if (isMarkerFound) {
-            markerStatus.innerText = "マーカーを検出中...";
-            markerStatus.style.color = "green";
-        } else {
-            markerStatus.innerText = "マーカーが見つかりません";
-            markerStatus.style.color = "red";
-        }
-        markerStatus.style.display = "block";
-    } else {
-        markerStatus.style.display = "none";
-    }
-}
+let currentMarkerId = '';
 
 // GIFの表示
 function showPopupGif(gifPathsArray) {
@@ -124,6 +108,24 @@ document.querySelectorAll('a-marker').forEach(marker => {
         }
     });
 });
+
+// マーカーステータス更新
+function updateMarkerStatus(show, isMarkerFound = false) {
+    if (isPlaying) return;
+
+    if (show) {
+        if (isMarkerFound) {
+            markerStatus.innerText = "マーカーを検出中...";
+            markerStatus.style.color = "green";
+        } else {
+            markerStatus.innerText = "マーカーが見つかりません";
+            markerStatus.style.color = "red";
+        }
+        markerStatus.style.display = "block";
+    } else {
+        markerStatus.style.display = "none";
+    }
+}
 
 // GIFを事前に読み込む
 window.addEventListener('load', () => {
